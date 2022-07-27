@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>grid</title>
+    <meta charset="utf-8">
+
+
+    <link type="text/css" rel="../css/tui-grid.css"></script>
+    <script type="text/javascript" src="../plugin/tui-grid.js"></script>
+</head>
+<body>
+    <div id="grid"></div>
+</body>
+</html>
+
+<script type="text/javascript">
+    var gridData;
+    const grid = new tui.Grid({
+      el: document.getElementById('grid'),
+      data: gridData,
+      scrollX: false,
+      scrollY: false,
+      columns: [
+        {
+          header: 'Name',
+          name: 'name'
+        },
+        {
+          header: 'Artist',
+          name: 'artist'
+        },
+        {
+          header: 'Type',
+          name: 'type'
+        },
+      ]
+    });
+</script>
