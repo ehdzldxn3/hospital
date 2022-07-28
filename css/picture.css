@@ -1,9 +1,23 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: #F0F0F0;
+  overflow: hidden;
+  min-height: 50%;
+}
 .workspace {
-    height: 100vh;
+    height: 100%;
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     display: grid;
     place-items: center;
+    /* opacity: 0.5; */
+  }
+
+  .img {
+    object-fit: contain;
   }
