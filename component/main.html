@@ -4,25 +4,61 @@
 <head>
     <title>grid</title>
     <meta charset="utf-8">
-
-
-    <link type="text/css" rel="../css/tui-grid.css"></script>
-    <script type="text/javascript" src="../plugin/tui-grid.js"></script>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+	  <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
 </head>
 <body>
-    <div id="grid"></div>
+  <div id="flex_container">
+    <div class="tbl-wrap" class="flex_item ">
+      <div id="grid" class="grid"></div>
+    </div>
+    <div id="grid-pagination-parents" style="margin: 0 auto;margin-top: 5px;">
+      <div id="grid-pagination" class="pagination"></div>
+    </div>
+
+    <div class="container" class="flex_item ">
+      <!-- <div id="grid" class="child"></div> -->
+      <div id="pic" class="child">
+        <img id="targetPic" src="https://cdn.vectorstock.com/i/1000x1000/65/30/default-image-icon-missing-picture-page-vector-40546530.webp" alt="pic" style="height: 100%"/>
+      </div>
+    </div>
+</div>
 </body>
 </html>
 
 <script type="text/javascript">
-    var gridData;
+    var gridData = [
+      {
+      name: 'Beautiful Lies',
+      artist: 'Birdy1',
+      type: 'https://cdn.pixabay.com/photo/2022/04/24/16/52/animal-7154059_1280.jpg'
+     },
+     {
+      name: 'Beautiful Lies',
+      artist: 'Birdy2',
+      type: 'https://cdn.pixabay.com/photo/2022/04/24/16/52/animal-7154059_1280.jpg'
+     },
+     {
+      name: 'Beautiful Lies',
+      artist: 'Birdy3',
+      type: 'https://cdn.pixabay.com/photo/2022/04/24/16/52/animal-7154059_1280.jpg'
+     },
+     {
+      name: 'Beautiful Lies',
+      artist: 'Birdy4',
+      type: 'http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg'
+     }
+  ]
+
     const grid = new tui.Grid({
       el: document.getElementById('grid'),
       data: gridData,
       scrollX: false,
       scrollY: false,
       columns: [
-        {
+       {
           header: 'Name',
           name: 'name'
         },
@@ -33,7 +69,25 @@
         {
           header: 'Type',
           name: 'type'
-        },
+        }
       ]
+    });
+
+    // const gridPic = new tui.Grid({
+    //   el: document.getElementById('gridPic'),
+    //   data: gridData,
+    //   scrollX: false,
+    //   scrollY: false,
+    //   columns: [
+    //    {
+    //       header: 'Picture',
+    //       name: 'Picture'
+    //     }
+    //   ]
+    // });
+
+    grid.on('click', (ev) => {
+        let picSrc = grid.getValue(ev.rowKey, "type");
+        document.getElementById("targetPic").setAttribute("src", picSrc);
     });
 </script>
