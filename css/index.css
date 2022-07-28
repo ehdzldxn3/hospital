@@ -67,16 +67,3 @@ body {
     margin: 0;
     padding: 0;
 }
-
-/* GARY */
-#flex_container {
-}
-.flex_item {
-    flex: 1;
-}
-.child {
-    width: 50%;
-}
-#pic{
-    max-height: 500px;
-}
