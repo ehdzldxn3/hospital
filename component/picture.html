@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>picture</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/picture.css" />
+</head>
+
+<body>
+    <div class="workspace">
+        <img id="img" class="img" alt="pic" />
+    </div>
+</body>
+
+</html>
+
+<script type="text/javascript">
+    let query = window.location.search;
+    let param = new URLSearchParams(query);
+    let src = param.get('src');
+
+    document.getElementById("img").setAttribute("src", src);
+
+    const zoomElement = document.querySelector(".workspace");
+let zoom = 1;
+const ZOOM_SPEED = 0.1;
+
+
+    document.addEventListener("wheel", function (e) {
+  if (e.deltaY > 0) {
+    zoomElement.style.transform = `scale(${(zoom += ZOOM_SPEED)})`;
+  } else {
+    zoomElement.style.transform = `scale(${(zoom -= ZOOM_SPEED)})`;
+  }
+});
+    
+</script>

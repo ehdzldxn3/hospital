@@ -4,7 +4,6 @@
 <head>
   <title>main</title>
   <meta charset="utf-8">
-  <meta charset="utf-8">
   <link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
   <link rel="stylesheet" href="../css/main.css" />
   <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
@@ -45,22 +44,22 @@
     {
       name: 'Beautiful Lies',
       artist: 'Birdy1',
-      type: 'https://cdn.pixabay.com/photo/2022/04/24/16/52/animal-7154059_1280.jpg'
+      type: '../images/2.jpg'
     },
     {
       name: 'Beautiful Lies',
       artist: 'Birdy2',
-      type: 'https://cdn.pixabay.com/photo/2022/04/24/16/52/animal-7154059_1280.jpg'
+      type: '../images/3.jpg'
     },
     {
       name: 'Beautiful Lies',
       artist: 'Birdy3',
-      type: 'https://cdn.pixabay.com/photo/2022/04/24/16/52/animal-7154059_1280.jpg'
+      type: '../images/4.jpg'
     },
     {
       name: 'Beautiful Lies',
       artist: 'Birdy4',
-      type: 'http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg'
+      type: '../images/5.jpg'
     }
   ]
 
@@ -87,10 +86,16 @@
     ]
   });
 
-
-
   grid.on('click', (ev) => {
-    let picSrc = grid.getValue(ev.rowKey, "type");
-    document.getElementById("targetPic").setAttribute("src", picSrc);
-  });
+        let picSrc = grid.getValue(ev.rowKey, "type");
+        document.getElementById("targetPic").setAttribute("src", picSrc);
+    });
+
+    const targetPic = document.getElementById("targetPic");
+    targetPic.addEventListener("click", clickEvent);
+
+    function clickEvent(e) {
+        let url = targetPic.getAttribute("src");
+        window.open("./picture.html?src="+url);
+    }
 </script>
