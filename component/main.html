@@ -16,50 +16,54 @@
     </h1>
   </div>
   <div class="navDiv">
-  <nav class="nav">
-    <ul class="navUl">
-      <li><a href="#" style="opacity: 1;">HOME</a></li>
-      <li><a href="#">TEST</a></li>
-    </ul>
-  </nav>
+    <nav class="nav">
+      <ul class="navUl">
+        <li><a href="#" style="opacity: 1;">HOME</a></li>
+        <li><a href="#">TEST1</a></li>
+        <li><a href="#">TEST2</a></li>
+        <li><a href="#">TEST3</a></li>
+        <li><a href="#">TEST4</a></li>
+      </ul>
+    </nav>
   </div>
   <div class="form">
-  <div class="gridBox">
+    <div class="gridBox">
       <div id="grid" class="grid"></div>
+    </div>
+    <div id="pic" class="imgBox">
+      <img src="../images/arrow.png" class="arrowL" onclick="arrowL()">
+      <img id="targetPic" src="../images/7.png" class="img tracking-in-expand-fwd" alt="pic" />
+      <img src="../images/arrow.png" class="arrowR" onclick="arrowR()">
+      <div id="imgFoo" class="img-foo">
+      </div>
+    </div>
   </div>
-  <div id="pic" class="imgBox">    
-    <img 
-      id="targetPic"
-      src="../images/7.png"
-      class="img"
-      alt="pic"/>
-  </div>
-</div>
 </body>
 
 </html>
 
 <script type="text/javascript">
+  let picSrc = [];
   var gridData = [
     {
       name: 'Beautiful Lies',
       artist: 'Birdy1',
-      type: '../images/2.jpg'
+      type: ['../images/1.jpg', '../images/2.jpg']
     },
     {
       name: 'Beautiful Lies',
       artist: 'Birdy2',
-      type: '../images/3.jpg'
+      type: ['../images/3.jpg', '../images/4.jpg']
     },
     {
       name: 'Beautiful Lies',
       artist: 'Birdy3',
-      type: '../images/6.jpg'
+      type: ['../images/5.jpg', '../images/6.jpg']
     },
     {
       name: 'Beautiful Lies',
       artist: 'Birdy4',
-      type: '../images/5.jpg'
+      type: ['../images/5.jpg', '../images/6.jpg']
     }
   ]
 
@@ -80,22 +84,51 @@
         width: 150
       },
       {
-        header: 'Type',
-        name: 'type'  
+        header: 'Image',
+        name: 'type'
       }
     ]
   });
 
   grid.on('click', (ev) => {
-        let picSrc = grid.getValue(ev.rowKey, "type");
-        document.getElementById("targetPic").setAttribute("src", picSrc);
-    });
-
-    const targetPic = document.getElementById("targetPic");
-    targetPic.addEventListener("click", clickEvent);
-
-    function clickEvent(e) {
-        let url = targetPic.getAttribute("src");
-        window.open("./picture.html?src="+url);
+    picSrc = grid.getValue(ev.rowKey, "type");
+    let imgFoo = document.getElementById("imgFoo")
+    imgFoo.innerHTML = "";
+    if(picSrc !== null) {
+      document.getElementById("targetPic").setAttribute("src", picSrc[0]);
+      
+      picSrc.map((img,index) => {
+        imgFoo.innerHTML += `<img id="targetPic" src="${img}" alt="../images/7.png"  onclick="imgFooClick(${index})"/>`
+      })
+    } else {
+      document.getElementById("targetPic").setAttribute("src", '../images/7.jpg');
     }
+    
+  });
+
+  //이미지 클릭 이벤트
+  const targetPic = document.getElementById("targetPic");
+  targetPic.addEventListener("click", clickEvent);
+  function clickEvent(e) {
+    let url = targetPic.getAttribute("src");
+    if(url === '../images/7.png') {
+      alert('이미지가 없습니다.')
+      return
+    }
+    window.open("./picture.html?src=" + url);
+  }
+
+  const arrowL = (e) => {
+    picSrc.push(picSrc.shift())
+    document.getElementById("targetPic").setAttribute("src", picSrc[0]);
+  }
+
+  const arrowR = (e) => {
+    picSrc.unshift(picSrc.pop())
+    document.getElementById("targetPic").setAttribute("src", picSrc[0]);
+  }
+
+  const imgFooClick = (e) => {
+    document.getElementById("targetPic").setAttribute("src", picSrc[e]);
+  }
 </script>
