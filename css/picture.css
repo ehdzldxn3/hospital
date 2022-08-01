@@ -3,8 +3,7 @@ html, body {
   width: 100%;
   margin: 0;
   padding: 0;
-  background: #F0F0F0;
-  /* overflow: hidden; */
+  background-color: rgba(0, 0, 0, 1);
   min-height: 50%;
 }
 .workspace {
@@ -13,15 +12,13 @@ html, body {
     width: 100%;
     top: 0;
     left: 0;
-    display: grid;
     place-items: center;
-    /* opacity: 0.5; */
+    
   }
 
   .img {
+    height: 100%;
+    width: 100%;
     object-fit: contain;
-  }
-
-  .img :hover{
     cursor: pointer;
-  }  
+  }

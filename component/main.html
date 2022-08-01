@@ -44,6 +44,7 @@
 
 <script type="text/javascript">
   let picSrc = [];
+  let imgIndex = 0;
   var gridData = [
     {
       name: 'Beautiful Lies',
@@ -63,7 +64,7 @@
     {
       name: 'Beautiful Lies',
       artist: 'Birdy4',
-      type: ['../images/5.jpg', '../images/6.jpg']
+      type: ['../images/1.jpg', '../images/2.jpg', '../images/3.jpg']
     }
   ]
 
@@ -96,7 +97,6 @@
     imgFoo.innerHTML = "";
     if(picSrc !== null) {
       document.getElementById("targetPic").setAttribute("src", picSrc[0]);
-      
       picSrc.map((img,index) => {
         imgFoo.innerHTML += `<img id="targetPic" src="${img}" alt="../images/7.png"  onclick="imgFooClick(${index})"/>`
       })
@@ -119,16 +119,46 @@
   }
 
   const arrowL = (e) => {
-    picSrc.push(picSrc.shift())
-    document.getElementById("targetPic").setAttribute("src", picSrc[0]);
+    
+    if(picSrc.length === 0) {
+      alert('이미지가 없습니다.')
+      return
+    }
+    imgIndex--
+    if(picSrc.length === imgIndex) {
+      imgIndex = 0
+    } else if (imgIndex < 0) {
+      imgIndex = picSrc.length - 1
+    } else if ( picSrc[imgIndex] === undefined) {
+      document.getElementById("targetPic").setAttribute("src", '../images/7.png');
+      return
+    }
+    document.getElementById("targetPic").setAttribute("src", picSrc[imgIndex]);
   }
 
   const arrowR = (e) => {
-    picSrc.unshift(picSrc.pop())
-    document.getElementById("targetPic").setAttribute("src", picSrc[0]);
+    if(picSrc.length === 0) {
+      alert('이미지가 없습니다.')
+      return
+    }
+    imgIndex++
+    if(picSrc.length === imgIndex) {
+      imgIndex = 0
+    } else if (imgIndex < 0) {
+      imgIndex = picSrc.length
+    } else if ( picSrc[imgIndex] === undefined) {
+      document.getElementById("targetPic").setAttribute("src", '../images/7.png');
+      return
+    }
+    document.getElementById("targetPic").setAttribute("src", picSrc[imgIndex]);
   }
 
   const imgFooClick = (e) => {
+    imgIndex = e
+    if ( picSrc[imgIndex] === undefined) {
+      document.getElementById("targetPic").setAttribute("src", '../images/7.png');
+      return
+    }
     document.getElementById("targetPic").setAttribute("src", picSrc[e]);
   }
 </script>
