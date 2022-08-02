@@ -4,22 +4,23 @@
 <head>
   <title>main</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="../css//tui-grid.css" />
   <link rel="stylesheet" href="../css/main.css" />
+  <!-- toast -->
+  <link rel="stylesheet" href="../css//tui-grid.css" />
   <script src="../plugin/tui-grid.js"></script>
+
 </head>
 
 <body>
   <div class="head">
-    <h1>
-      HOSPITAL
-    </h1>
+    <!-- <h1 class="display-1">HOSPITAL</h1> -->
+    <h1 class="">HOSPITAL</h1>
   </div>
   <div class="navDiv">
     <nav class="nav">
       <ul class="navUl">
-        <li><a href="#" style="opacity: 1;">HOME</a></li>
-        <li><a href="#">TEST1</a></li>
+        <li><a href="#" style="opacity: 1;">TUI</a></li>
+        <li id="bootstrap" ><a>BSP</a></li>
         <li><a href="#">TEST2</a></li>
         <li><a href="#">TEST3</a></li>
         <li><a href="#">TEST4</a></li>
@@ -34,8 +35,7 @@
       <img src="../images/arrow.png" class="arrowL" onclick="arrowL()">
       <img id="targetPic" src="../images/7.png" class="img tracking-in-expand-fwd" alt="pic" />
       <img src="../images/arrow.png" class="arrowR" onclick="arrowR()">
-      <div id="imgFoo" class="img-foo">
-      </div>
+      <div id="imgFoo" class="img-foo"></div>
     </div>
   </div>
 </body>
@@ -161,4 +161,12 @@
     }
     document.getElementById("targetPic").setAttribute("src", picSrc[e]);
   }
+
+  document.getElementById('bootstrap').addEventListener('click', () => {
+    if(window.navigator.onLine) {
+      location.href = './bootstrap.html'
+    } else {
+      alert('인터넷 연결을 확인 하세요.')
+    }
+  })
 </script>
